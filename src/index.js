@@ -2,7 +2,9 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import pictureOTD from './api/potdApiCall.js';
-// import * as THREE from 'three';
+import model from './home3.js';
+
+model();
 
 pictureOTD.getPicture()
   .then((data) => {
@@ -20,7 +22,7 @@ pictureOTD.getPicture()
 
     let date = document.querySelector('.potdDate');
     date.innerText = data.date; 
-    
+
     let description = document.querySelector('.potdDescription');
     description.innerText = data.explanation;
   });
