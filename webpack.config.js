@@ -3,37 +3,36 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
+
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/', // Add this line
   },
-  devServer: {                 
-    contentBase: './dist'      
-  },    
+  devServer: {
+    static: './dist', // Replace contentBase with static
+  },
   devtool: 'eval-source-map',
   plugins: [
     new ESLintPlugin(),
     new Dotenv(),
     new CleanWebpackPlugin({
-      verbose: true
-    }), 
+      verbose: true,
+    }),
     new HtmlWebpackPlugin({
       title: '',
       template: './src/index.html',
-      inject: 'body'
-    })
+      inject: 'body',
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
-    ]
-  }
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
 };
