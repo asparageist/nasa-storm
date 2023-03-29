@@ -4,18 +4,39 @@ import './marsData.css';
 
 let currentPhotoIndex = 0;
 
+const loadImage = (image) => {
+  const img = new Image();
+  img.src = image.dataset.src;
+  img.onload = () => {
+    image.src = img.src;
+    image.classList.add('mars-photo--loaded');
+  };
+};
+
 const showPhoto = (photos, index) => {
   const container = document.getElementById('mars-photo-container');
   container.innerHTML = '';
 
   const photo = photos[index];
   const img = document.createElement('img');
-  img.src = photo.img_src;
+  img.dataset.src = photo.img_src; // Change this line
   img.alt = `Mars Rover Photo taken on sol ${photo.sol}`;
   img.className = 'mars-photo';
 
   container.appendChild(img);
   container.style.display = 'block';
+
+  // Add an IntersectionObserver to lazy load the image
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        loadImage(entry.target);
+        observer.disconnect();
+      }
+    });
+  });
+
+  observer.observe(img);
 };
 
 const getAndDisplayMarsRoverPhotos = async (sol) => {
