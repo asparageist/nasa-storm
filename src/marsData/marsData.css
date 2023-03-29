@@ -1,4 +1,39 @@
-/* Add this to your marsData.css file */
+body {
+  background-color: #0D2238;
+  font-family: 'Arial', sans-serif;
+  color: #F2F2F2;
+  margin: 0;
+  padding: 0;
+}
+
+.nasa-navbar {
+  background-color: #1C7293;
+  padding: 10px 20px;
+  display: flex;
+}
+
+.nasa-navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nasa-navbar li {
+  margin-right: 20px;
+}
+
+.nasa-navbar a {
+  text-decoration: none;
+  color: #F2F2F2;
+  transition: color 0.2s;
+}
+
+.nasa-navbar a:hover {
+  color: #F25C54;
+}
+
 .mars-slideshow-container {
   position: relative;
   display: flex;
@@ -12,8 +47,9 @@
   overflow: hidden;
   position: relative;
   margin: 0 auto;
-  border: 3px solid #000;
+  border: 3px solid #1C7293; /* Updated */
   box-sizing: border-box;
+  background-color: #0D2238; /* Added */
 }
 
 .mars-photo {
@@ -24,25 +60,25 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0; /* Add this line */
-  transition: opacity 0.5s; /* Add this line */
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 
-.mars-photo--loaded { /* Add this CSS rule */
+.mars-photo--loaded {
   opacity: 1;
 }
 
 .mars-slideshow-button {
-  background-color: transparent;
+  background-color: #1C7293; /* Updated */
   border: none;
   font-size: 2rem;
-  color: #333;
+  color: #F2F2F2; /* Updated */
   cursor: pointer;
   padding: 0 15px;
   user-select: none;
-  transition: color 0.2s;
+  transition: background-color 0.2s; /* Updated */
 }
 
 .mars-slideshow-button:hover {
-  color: #555;
+  background-color: #F25C54; /* Updated */
 }
