@@ -5,14 +5,17 @@ const Dotenv = require('dotenv-webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    main: './src/index.js', // change this line
+    marsRover: './src/marsData/marsData.js', // add this line
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].bundle.js', // change this line
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/', // Add this line
+    publicPath: '/',
   },
   devServer: {
-    static: './dist', // Replace contentBase with static
+    static: './dist',
   },
   devtool: 'eval-source-map',
   plugins: [
@@ -24,6 +27,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: '',
       template: './src/index.html',
+      inject: 'body',
+      chunks: ['main'], // add this line
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'mars-rover.html',
+      template: './src/mars-rover.html',
+      chunks: ['marsRover'],
       inject: 'body',
     }),
   ],
