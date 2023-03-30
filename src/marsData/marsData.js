@@ -19,14 +19,13 @@ const showPhoto = (photos, index) => {
 
   const photo = photos[index];
   const img = document.createElement('img');
-  img.dataset.src = photo.img_src; // Change this line
+  img.dataset.src = photo.img_src;
   img.alt = `Mars Rover Photo taken on sol ${photo.sol}`;
   img.className = 'mars-photo';
 
   container.appendChild(img);
   container.style.display = 'block';
 
-  // Add an IntersectionObserver to lazy load the image
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
