@@ -1,5 +1,6 @@
 // src/marsData/marsData.js
 import { fetchMarsRoverPhotos } from '../api/marsApiCalls';
+import { fetchMarsWeatherData } from '../api/marsApiCalls';
 import './marsData.css';
 
 let currentPhotoIndex = 0;
@@ -58,5 +59,47 @@ const getAndDisplayMarsRoverPhotos = async (sol) => {
     container.style.display = 'block';
   }
 };
+
+//------- Mars Weather Data --------//
+
+const displayMarsWeatherData = (data) => {
+  console.log('Weather data:', data);
+  if (!data) {
+    return;
+  }
+
+  const weatherElement = document.getElementById('mars-weather');
+
+  // Display the most recent sol data
+  const latestSol = Object.keys(data)[0];
+  const currentWeatherData = data[latestSol];
+
+  if (!currentWeatherData || !currentWeatherData.AT || !currentWeatherData.HWS || !currentWeatherData.WD || !currentWeatherData.WD.most_common) {
+    console.error('Incomplete weather data received:', currentWeatherData);
+    return;
+  }
+
+  // Display current weather data
+  const currentWeatherElement = document.createElement('div');
+  currentWeatherElement.innerHTML = `
+    <h2>Current Mars Weather</h2>
+    <p>Sol: ${latestSol}</p>
+    <p>Season: ${currentWeatherData.Season}</p>
+    <p>Average Temperature: ${currentWeatherData.AT.av} °C</p>
+    <p>Minimum Temperature: ${currentWeatherData.AT.mn} °C</p>
+    <p>Maximum Temperature: ${currentWeatherData.AT.mx} °C</p>
+    <p>Average Wind Speed: ${currentWeatherData.HWS.av} m/s</p>
+    <p>Minimum Wind Speed: ${currentWeatherData.HWS.mn} m/s</p>
+    <p>Maximum Wind Speed: ${currentWeatherData.HWS.mx} m/s</p>
+    <p>Wind Direction: ${currentWeatherData.WD.most_common.compass_point}</p>
+  `;
+  weatherElement.appendChild(currentWeatherElement);
+};
+
+fetchMarsWeatherData()
+  .then((data) => {
+    console.log('Fetched weather data:', data);
+    displayMarsWeatherData(data);
+  });
 
 getAndDisplayMarsRoverPhotos(1000);
