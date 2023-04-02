@@ -4,6 +4,8 @@ import { fetchMarsWeatherData } from '../api/marsApiCalls';
 import './marsData.css';
 import Chart from 'chart.js/auto';
 
+// ------- Mars Rover Photos -------- //
+
 let currentPhotoIndex = 0;
 
 const loadImage = (image) => {
