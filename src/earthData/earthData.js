@@ -7,7 +7,7 @@ let photoIndex = 0;
 
 let handleEarthPic = (event) => {
   event.preventDefault();
-
+  photoIndex = 0;
   gatherInfo();
 };
 
@@ -16,7 +16,12 @@ let gatherInfo = () => {
   let month = document.querySelector("#month").value;
   let day = document.querySelector("#day").value;
 
+  if (year === "" || month === "" || day === "") {
+    changePic(2022, "06", 20);
+  }
   changePic(year, month, day);
+
+
 };
 
 let changePic = (year, month, day) => {
@@ -27,6 +32,7 @@ let changePic = (year, month, day) => {
         const errorElement = document.getElementById("error");
         errorElement.innerHTML = errorMessage;
         throw new Error(errorMessage);
+
       }
 
       if (photoIndex >= data.length) {
@@ -37,9 +43,18 @@ let changePic = (year, month, day) => {
         photoIndex = data.length - 1;
       }
 
+      if (data.length < 1) {
+        document.querySelector(".title").innerText = "There are no pictures for that date. Enter a new day";
+      }
+
       let img = document.querySelector('.slideshow-image');
       img.setAttribute("src", `https://api.nasa.gov/EPIC/archive/natural/${year}/${month}/${day}/png/${data[photoIndex].image}.png?api_key=${process.env.API_KEY}`);
 
+      let displayDate = document.querySelector('.title');
+      displayDate.innerText = `Earth on ${data[photoIndex].date}`;
+
+      let picNum = document.querySelector('.picNum');
+      picNum.innerText = `${photoIndex + 1} / ${data.length}`;
     });
 };
 
@@ -68,3 +83,5 @@ window.addEventListener('load', () => {
     prevIndex();
   });
 });
+
+changePic(2022, "06", 20);

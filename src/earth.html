@@ -14,24 +14,55 @@
     </ul>
   </nav>
   <div class="contentWrapper">
+    <h1>Earth!</h1>
+    <div class="earthHistory">
+      <p>Earth formed around 4.6 billion years ago through the accretion of cosmic dust and debris. Over time, the planet underwent several major geological and biological transformations. These include the formation of the first continents, the emergence of primitive life forms in the oceans, the development of photosynthesis and the subsequent rise in atmospheric oxygen levels, the emergence of complex organisms, and the evolution of humans. The history of Earth is characterized by cycles of gradual change punctuated by catastrophic events such as mass extinctions and volcanic eruptions.
+        The history of the Earth can be divided into four major eons: the Hadean, Archean, Proterozoic, and Phanerozoic. During the Hadean eon, the planet was largely molten and underwent heavy bombardment from space debris. The Archean eon saw the emergence of the first life forms and the development of continents. The Proterozoic eon was marked by the emergence of complex organisms and the rise of oxygen levels. The Phanerozoic eon is the most recent and is characterized by the diversification of life and the emergence of land animals, including humans. Throughout its history, the Earth has undergone numerous geological and biological changes, shaping the planet we know today.</p>
+    </div>
+
+    <div class="slideshowExplanation">
+      <p>Want to see how the earth looked in the past? Try entering a recent date and you will get pictures of the whole earth on that day. Some days won't have any pictures, but most days will.
+        Give it a try! Enter a date and hit the submit button!
+      </p>
+    </div>
+
     <div class="earth-slideshow-container">
+
+      <h3 class="title"></h3>
       <div class="earth-container">
+        
         <img class="slideshow-image">
         
-        <button id="prev-photo" class="mars-slideshow-button">&#10094;</button>
-        <button id="next-photo" class="mars-slideshow-button">&#10095;</button>
+        <div class="button-container">
+          <button id="prev-photo" class="mars-slideshow-button">&#10094;</button>
+          <button id="next-photo" class="mars-slideshow-button">&#10095;</button>
+        </div>
+        
+        <h5 class="picNum"></h5>
         
         <form name="date">
-          <label>Enter a valid year. Ex: 2020</label>
-          <input id="year">
-          <label>Enter a valid month. Ex: 06</label>
-          <input id="month">
-          <label>Enter a valid day. Ex: 20</label>
-          <input id="day">
-          <button type="submit" id="submit">Enter</button>
+          <div class="form-control-sm">
+            <label>Enter a valid year.</label>
+            <input class="input"id="year" placeholder="2022">
+          </div>
+          
+          <div class="form-control-sm">
+            <label>Enter a valid month.</label>
+            <input id="month" placeholder="06">
+          </div>
+
+          <div class="form-control-sm">
+            <label>Enter a valid day.</label>
+            <input id="day" placeholder="20">
+          </div>
+
+          <button class="btn btn-primary btn-sm" type="submit" id="submit">Submit</button>
         </form>
       </div>
     </div>
+
+
+
   </div>
   <script type="text/javascript" src="./earthData/earthData.js"></script>
 </body>
