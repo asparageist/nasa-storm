@@ -19,7 +19,21 @@ let gatherInfo = () => {
   if (year === "" || month === "" || day === "") {
     changePic(2022, "06", 20);
   }
+
+  if (year < 24) {
+    year = 20 + year;
+  }
+
+  if (month < 10) {
+    month = "0" + month;
+  }
+
+  if (day < 10) {
+    day = "0" + day;
+  }
   changePic(year, month, day);
+
+
 
 
 };
