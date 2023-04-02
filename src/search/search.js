@@ -24,27 +24,46 @@ form.addEventListener('submit', (event) => {
 });
 
 /* global YT */
+let player;
 
 function onYouTubeIframeAPIReady() {
-  new YT.Player('video-background', {
+  player = new YT.Player('video-background', {
     videoId: 'YH3c1QZzRK4',
     width: window.innerWidth,
     height: window.innerHeight,
     playerVars: {
       autoplay: 1,
       controls: 0,
-      loop: 1,
+      loop: 4,
       showinfo: 0,
-      modestbranding: 1
+      modestbranding: 1,
+      mute: 1
     },
     events: {
       onReady: onPlayerReady
     }
   });
+  player.playVideo();
 }
 
 function onPlayerReady(event) {
-  event.target.mute();
+  event.target.playVideo();
+}
+
+const muteButton = document.querySelector('#mute-button');
+muteButton.addEventListener('click', () => {
+  toggleMute(player);
+});
+
+
+function toggleMute(player) {
+  if (typeof player !== 'undefined' && player.isMuted()) {
+    player.unMute();
+    document.getElementById('mute-button').textContent = 'Mute';
+  } else if (typeof player !== 'undefined') {
+    player.mute();
+    document.getElementById('mute-button').textContent = 'Unmute';
+  }
 }
 
 window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
