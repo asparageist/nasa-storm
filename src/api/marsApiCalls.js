@@ -18,7 +18,15 @@ const fetchMarsWeatherData = async () => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    return data;
+    const solKeys = data.sol_keys;
+    console.log('Raw weather data:', data);
+    const weatherData = solKeys.reduce((acc, sol) => {
+      if (data[sol].AT) {
+        acc[sol] = data[sol].AT;
+      }
+      return acc;
+    }, {});
+    return weatherData;
   } catch (error) {
     console.error('Error fetching Mars weather data:', error);
     return null;

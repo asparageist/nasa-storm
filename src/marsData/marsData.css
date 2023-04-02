@@ -82,3 +82,29 @@ body {
 .mars-slideshow-button:hover {
   background-color: #F25C54; /* Updated */
 }
+
+#mars-weather {
+  width: 100%;
+  max-width: 800px;
+  height: 0;
+  padding-bottom: 50%;
+  position: relative;
+  margin: 0 auto;
+}
+
+#mars-weather-chart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#mars-ps {
+  width: 80%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}

@@ -2,6 +2,7 @@
 import { fetchMarsRoverPhotos } from '../api/marsApiCalls';
 import { fetchMarsWeatherData } from '../api/marsApiCalls';
 import './marsData.css';
+import Chart from 'chart.js/auto';
 
 let currentPhotoIndex = 0;
 
@@ -62,44 +63,102 @@ const getAndDisplayMarsRoverPhotos = async (sol) => {
 
 //------- Mars Weather Data --------//
 
+const sampleData = {
+  1000: {
+    AT: {av: -65.8},
+  },
+  1001: {
+    AT: {av: -63.2},
+  },
+  1002: {
+    AT: {av: -60.9},
+  },
+  1003: {
+    AT: {av: -62.5},
+  },
+  1004: {
+    AT: {av: -64.0},
+  },
+};
+
+const isValidSolData = (data) => {
+  if (data.sol_keys && data.sol_keys.length > 0) {
+    const lastSol = data.sol_keys[data.sol_keys.length - 1];
+    const validityCheck = data.validity_checks[lastSol];
+    return validityCheck && validityCheck.AT.valid;
+  }
+  return false;
+};
+
 const displayMarsWeatherData = (data) => {
   console.log('Weather data:', data);
   if (!data) {
     return;
   }
 
-  const weatherElement = document.getElementById('mars-weather');
+  const labels = Object.keys(data);
+  const temperatures = Object.values(data).map(d => d.AT.av);
+  console.log('Labels:', labels);
+  console.log('Temperatures:', temperatures);
 
-  // Display the most recent sol data
-  const latestSol = Object.keys(data)[0];
-  const currentWeatherData = data[latestSol];
+  // Prepare data for the chart
+  const chartData = {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Average Air Temperature',
+        data: temperatures,
+        borderColor: 'black',
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+        fill: true,
+      },
+    ],
+  };
 
-  if (!currentWeatherData || !currentWeatherData.AT || !currentWeatherData.HWS || !currentWeatherData.WD || !currentWeatherData.WD.most_common) {
-    console.error('Incomplete weather data received:', currentWeatherData);
-    return;
-  }
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Seasonal Change in Elysium Planitia',
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Sols',
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Temperature (°C)',
+        },
+      },
+    },
+  };
 
-  // Display current weather data
-  const currentWeatherElement = document.createElement('div');
-  currentWeatherElement.innerHTML = `
-    <h2>Current Mars Weather</h2>
-    <p>Sol: ${latestSol}</p>
-    <p>Season: ${currentWeatherData.Season}</p>
-    <p>Average Temperature: ${currentWeatherData.AT.av} °C</p>
-    <p>Minimum Temperature: ${currentWeatherData.AT.mn} °C</p>
-    <p>Maximum Temperature: ${currentWeatherData.AT.mx} °C</p>
-    <p>Average Wind Speed: ${currentWeatherData.HWS.av} m/s</p>
-    <p>Minimum Wind Speed: ${currentWeatherData.HWS.mn} m/s</p>
-    <p>Maximum Wind Speed: ${currentWeatherData.HWS.mx} m/s</p>
-    <p>Wind Direction: ${currentWeatherData.WD.most_common.compass_point}</p>
-  `;
-  weatherElement.appendChild(currentWeatherElement);
+  const ctx = document.getElementById('mars-weather-chart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: chartData,
+    options: chartOptions,
+  });
 };
 
 fetchMarsWeatherData()
   .then((data) => {
     console.log('Fetched weather data:', data);
-    displayMarsWeatherData(data);
+    if (isValidSolData(data)) {
+      displayMarsWeatherData(data);
+    } else {
+      console.warn('API returned invalid or empty sol data, using sample data.');
+      displayMarsWeatherData(sampleData);
+    }
   });
 
 getAndDisplayMarsRoverPhotos(1000);

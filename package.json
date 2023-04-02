@@ -27,7 +27,8 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
-    "dotenv-webpack": "^2.0.0",
+    "chart.js": "^4.2.1",
+    "dotenv-webpack": "^8.0.1",
     "three": "^0.150.1"
   }
 }
