@@ -108,8 +108,8 @@ const displayMarsWeatherData = (data) => {
       {
         label: 'Average Air Temperature',
         data: temperatures,
-        borderColor: 'black',
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+        borderColor: 'rgba(0, 0, 255, 1)',
+        backgroundColor: 'rgba(0, 0, 255, 0.2)',
         fill: true,
       },
     ],
