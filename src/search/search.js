@@ -16,6 +16,22 @@ form.addEventListener('submit', (event) => {
         const imgElement = document.createElement('img');
         imgElement.src = imageUrl;
         gallery.appendChild(imgElement);
+        
+        imgElement.addEventListener("mouseover", () =>{
+
+          NasaImagesApi.getImageMetadata(imageUrl)
+            .then(metadata => {
+              const tooltip = document.createElement("div");
+              tooltip.className = "tooltip";
+              tooltip.innerHTML = `<p>Date: ${metadata.date}</p>
+            <p>Description: ${metadata.description}</p>`;
+
+              tooltip.style.top = `${event.clientY + 10}px`;
+              tooltip.style.left = `${event.clientX + 10}px`;
+
+              document.body.appendChild(tooltip);
+            });
+        });
       });
     })
     .catch(error => {

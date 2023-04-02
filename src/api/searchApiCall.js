@@ -13,5 +13,22 @@ export default class NasaImagesApi {
     const imageUrls = images.map(image => image.links[0].href);
     return imageUrls;
   }
+  
+  static async getImageMetadata(imageUrl) {
+    const proxyUrl = `http://localhost:8085/${imageUrl}`;
+    const response = await fetch(proxyUrl);
+
+    if(!response.ok) {
+      throw new Error( `Failed to fetch data: ${response.status} ${response.statusText}`);
+    }
+    const data = await response.json();
+    const metadata = {
+      date: data.date_created,
+      description: data.description
+    };
+    return metadata;
+  }
 }
+
+
 
