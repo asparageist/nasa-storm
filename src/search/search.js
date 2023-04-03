@@ -63,7 +63,6 @@ function onYouTubeIframeAPIReady() {
       onReady: onPlayerReady
     }
   });
-  player.playVideo();
 }
 
 function onPlayerReady(event) {
