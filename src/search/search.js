@@ -32,6 +32,10 @@ form.addEventListener('submit', (event) => {
               document.body.appendChild(tooltip);
             });
         });
+        imgElement.addEventListener("mouseout", () => {
+          const tooltips = document.querySelectorAll(".tooltip");
+          tooltips.forEach(tooltip => tooltip.remove());
+        });
       });
     })
     .catch(error => {
@@ -53,7 +57,7 @@ function onYouTubeIframeAPIReady() {
       loop: 4,
       showinfo: 0,
       modestbranding: 1,
-      mute: 1
+      mute: 0
     },
     events: {
       onReady: onPlayerReady

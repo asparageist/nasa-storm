@@ -19,9 +19,10 @@ export default class NasaImagesApi {
     const response = await fetch(proxyUrl);
 
     if(!response.ok) {
-      throw new Error( `Failed to fetch data: ${response.status} ${response.statusText}`);
+      throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
     }
     const data = await response.json();
+    console.log(data);
     const metadata = {
       date: data.date_created,
       description: data.description
