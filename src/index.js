@@ -4,6 +4,7 @@ import './css/styles.css';
 import pictureOTD from './api/potdApiCall.js';
 import model from './home3.js';
 import './marsData/marsData';
+import './space-phenomena/space-phenomena';
 
 model();
 
