@@ -16,12 +16,12 @@ submitButton.addEventListener('click', () => {
       const resultsDiv = document.getElementById('results');
       resultsDiv.innerHTML = '';
 
-      const selectedDate = new Date(startDate).toISOString().substring(0, 10);
+      const selectedStartDate = new Date(startDate).toISOString().substring(0, 10);
+      const selectedEndDate = new Date(endDate).toISOString().substring(0,10);
 
       data.forEach((item) => {
         const flrDate = new Date(item.beginTime).toISOString().substring(0, 10); // Convert beginTime to ISO string format
-
-        if (flrDate === selectedDate) {
+        if (flrDate >= selectedStartDate && flrDate <= selectedEndDate) {
           const newDiv = document.createElement('div');
           newDiv.innerHTML = `<p>Start Time: ${item.beginTime}</p>
                               <p>Peak Time: ${item.peakTime}</p>
