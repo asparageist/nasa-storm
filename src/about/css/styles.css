@@ -1,7 +1,17 @@
 body {
   background-color: black;
+  background-image: url("https://i.gifer.com/7b5j.mp4");
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
+}
+
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
 }
 
 nav {
@@ -26,4 +36,10 @@ nav a {
   text-decoration: none;
   color: #F2F2F2;
   transition: color 0.2s;
+}
+
+h1 {
+  display: block;
+  color: white;
+  font-size: 80px;
 }
