@@ -1,5 +1,5 @@
 body {
-  background-color: #0D2238;
+  background-color: black;
   font-family: 'Arial', sans-serif;
   color: #F2F2F2;
   margin: 0;
@@ -68,5 +68,6 @@ form {
 
 }
 .slideshowExplanation {
+  
   padding: 0px 10px 0px 10px;
 }
