@@ -33,9 +33,6 @@ let gatherInfo = () => {
   }
   changePic(year, month, day);
 
-
-
-
 };
 
 let changePic = (year, month, day) => {
