@@ -1,0 +1,73 @@
+body {
+  background-color: black;
+  font-family: 'Arial', sans-serif;
+  color: #F2F2F2;
+  margin: 0;
+  padding: 0;
+}
+
+.nasa-navbar {
+  background-color: #1C7293;
+  padding: 10px 20px;
+  display: flex;
+}
+
+.nasa-navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nasa-navbar li {
+  margin-right: 20px;
+}
+
+.nasa-navbar a {
+  text-decoration: none;
+  color: #F2F2F2;
+  transition: color 0.2s;
+}
+
+.nasa-navbar a:hover {
+  color: #F25C54;
+}
+
+.contentWrapper {
+  display: flex;
+  padding: 30px;
+  border: 1px solid white;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slideshow-image {
+  width: 25%;
+}
+
+.earthHistory {
+  width: 90%;
+}
+
+.earth-slideshow-container {
+  display: flex;
+  border: 1px solid #F2F2F2;
+  flex-direction: column;
+  align-items: center;
+}
+
+.earth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  display: flex;
+
+}
+.slideshowExplanation {
+  
+  padding: 0px 10px 0px 10px;
+}

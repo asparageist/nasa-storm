@@ -8,9 +8,11 @@ module.exports = {
   entry: {
     main: './src/index.js', // change this line
     marsRover: './src/marsData/marsData.js', // add this line
+    earth: './src/earthData/earthData.js'
     spacePhenomena: './src/space-phenomena/space-phenomena.js',
     search: './src/search/search.js',
     about: './src/about/about.js',
+
   },
   output: {
     filename: '[name].bundle.js', // change this line
@@ -40,6 +42,11 @@ module.exports = {
       inject: 'body',
     }),
     new HtmlWebpackPlugin({
+
+      filename: 'earth.html',
+      template: './src/earth.html',
+      chunks: ['earth'],
+
       filename: 'space-phenomena.html',
       template: './src/space-phenomena.html',
       chunks: ['spacePhenomena'],
