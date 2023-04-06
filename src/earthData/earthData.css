@@ -9,7 +9,8 @@ body {
 }
 
 .nasa-navbar {
-  background-color: #1C7293;
+  background-color: #000000;
+  font-family: 'Montserrat', sans-serif;
   padding: 10px 20px;
   display: flex;
 }
