@@ -1,26 +1,18 @@
 body {
-  background-color: black;
-  background-image: url("https://i.gifer.com/7b5j.mp4");
-  font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
+  background-color: #0D2238;
+  font-family: 'Arial', sans-serif;
+  color: #F2F2F2;
+  margin: 0;
+  padding: 0;
 }
 
-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
-  z-index: -1;
-}
-
-nav {
-  font-size: 15px;
+.nasa-navbar {
+  background-color: #1C7293;
   padding: 10px 20px;
   display: flex;
 }
 
-nav ul {
+.nasa-navbar ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -28,18 +20,51 @@ nav ul {
   align-items: center;
 }
 
-nav li {
+.nasa-navbar li {
   margin-right: 20px;
 }
 
-nav a {
+.nasa-navbar a {
   text-decoration: none;
   color: #F2F2F2;
   transition: color 0.2s;
 }
 
-h1 {
-  display: block;
-  color: white;
-  font-size: 80px;
+.nasa-navbar a:hover {
+  color: #F25C54;
+}
+
+.credits {
+  display: inline;
+  font-family: monospace;
+  font-size: 35px;
+  writing-mode: vertical-lr;
+  background: linear-gradient(to right, white, darkblue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#nasa {
+  vertical-align: text-bottom;
+  display: inline;
+  width: auto;
+  height: auto;
+  max-width: 200px;
+  padding: 20px;
+}
+
+.creditsText {
+  color: #1C7293;
+}
+
+.aboutLinks {
+  text-align: center;
+  width: 75%;
+  float: center;
+  background-color: black;
+  text-align: center;
+  border: 5px solid #1C7293;
+  border-bottom-left-radius: 75px;
+  border-bottom-right-radius: 75px;
+  margin: auto;
 }
